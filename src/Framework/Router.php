@@ -41,7 +41,7 @@ class Router
 
             $controllerInstance = new $class;
 
-            $controllerInstance->{$function}();
+            $controllerInstance->$function();
         }
     }
-}
+};
