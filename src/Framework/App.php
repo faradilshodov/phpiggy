@@ -14,7 +14,7 @@ class App
         $this->router = new Router();
         $this->container = new Container();
 
-        if($containerDefinitionsPath) {
+        if ($containerDefinitionsPath) {
             $containerDefinitions = include $containerDefinitionsPath;
             $this->container->addDefinitions($containerDefinitions);
         }
@@ -31,6 +31,11 @@ class App
     public function get(string $path, array $controller)
     {
         $this->router->add('GET', $path, $controller);
+    }
+
+    public function post(string $path, array $controller)
+    {
+        $this->router->add('POST', $path, $controller);
     }
 
     public function addMiddleware(string $middleware)
