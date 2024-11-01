@@ -1,20 +1,17 @@
 <?php
 
-$driver = 'mysql';
-$config = http_build_query(data: [
+include __DIR__ . '/src/Framework/Database.php';
+
+use Framework\Database;
+
+$db = new Database('mysql', [
     'host' => '127.0.0.1',
     'port' => '3306',
     'dbname' => 'phpiggy',
-], arg_separator: ';');
+], 'root', '');
 
-$dsn = "{$driver}:{$config}";
-$username = 'root';
-$password = '';
+$query = "SELECT * FROM products";
 
-try {
-    $db = new PDO($dsn, $username, $password);
-} catch (PDOException $e) {
-    die("Connection failed");
-}
+$stmt = $db->connection->query($query, PDO::FETCH_ASSOC);
 
-echo "Connected to the database successfully!";
+var_dump($stmt->fetchAll());
