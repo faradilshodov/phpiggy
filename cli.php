@@ -10,8 +10,6 @@ $db = new Database('mysql', [
     'dbname' => 'phpiggy',
 ], 'root', '');
 
-$query = "SELECT * FROM products";
+$sqlFile = file_get_contents("./database.sql");
 
-$stmt = $db->connection->query($query, PDO::FETCH_ASSOC);
-
-var_dump($stmt->fetchAll());
+$db->query($sqlFile);
