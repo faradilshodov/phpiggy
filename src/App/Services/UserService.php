@@ -42,13 +42,14 @@ class UserService
         );
     }
 
-    public function login(array $formData) {
+    public function login(array $formData)
+    {
         $user = $this->db->query("SELECT * FROM users WHERE email = :email", [
             'email' => $formData['email']
         ])->find();
 
         $passwordsMatch = password_verify(
-            $formData['password'], 
+            $formData['password'],
             $user['password'] ?? ''
         );
 
@@ -59,5 +60,12 @@ class UserService
         session_regenerate_id();
 
         $_SESSION['user'] = $user['id'];
+    }
+
+    public function logout()
+    {
+        unset($_SESSION['user']);
+
+        session_regenerate_id();
     }
 }
