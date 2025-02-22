@@ -6,7 +6,7 @@ namespace Framework;
 
 use PDO, PDOException, PDOStatement;
 
-class database
+class Database
 {
     private PDO $connection;
     private PDOStatement $stmt;
@@ -52,5 +52,9 @@ class database
     public function id()
     {
         return $this->connection->lastInsertId();
+    }
+
+    public function findAll(){
+        return $this->stmt->fetchAll();
     }
 }
