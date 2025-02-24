@@ -13,8 +13,7 @@ class TransactionController
     private TemplateEngine $view,
     private ValidatorService $validatorService,
     private TransactionService $transactionService,
-  ) {
-  }
+  ) {}
 
   public function createView()
   {
@@ -28,5 +27,20 @@ class TransactionController
     $this->transactionService->create($_POST);
 
     redirectTo('/');
+  }
+
+  public function editView(array $params)
+  {
+    $transaction = $this->transactionService->getUserTransaction(
+      $params['transaction']
+    );
+
+    if (!$transaction) {
+      redirectTo('/');
+    }
+
+    echo $this->view->render("transactions/edit.php", [
+      'transaction' => $transaction,
+    ]);
   }
 }
