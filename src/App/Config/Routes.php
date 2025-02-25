@@ -6,13 +6,13 @@ namespace App\Config;
 
 use Framework\App;
 use App\Controllers\{
-    HomeController, 
-    AboutController, 
+    HomeController,
+    AboutController,
     AuthController,
     TransactionController,
 };
 use App\Middleware\{
-    AuthRequiredMiddleware, 
+    AuthRequiredMiddleware,
     GuestOnlyMiddleware
 };
 

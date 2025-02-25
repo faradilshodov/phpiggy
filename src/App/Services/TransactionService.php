@@ -88,7 +88,8 @@ class TransactionService
         );
     }
 
-    public function delete(int $id) {
+    public function delete(int $id)
+    {
         $this->db->query(
             "DELETE FROM transactions
             WHERE id = :id
