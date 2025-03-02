@@ -93,4 +93,16 @@ class ReceiptService
         
         readfile($filePath);
     }
+
+    public function delete(array $receipt)
+    {
+        $filePath = Paths::STORAGE_UPLOADS . "/" . $receipt['storage_filename'];
+
+        unlink($filePath);
+
+        $this->db->query(
+            "DELETE FROM receipts WHERE id = :id",
+            ['id' => $receipt['id']]
+        );
+    }
 }
